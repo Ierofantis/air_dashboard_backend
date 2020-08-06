@@ -11,5 +11,6 @@ const bcrypt = require("bcrypt-nodejs");
 router.get('/', (req, res) => res.send('Hello World!'));
 
 router.post('/signup', (req, res) => user.registerUser(req.body.email, req.body.username, req.body.password, res));
+router.post('/login', (req, res) => user.loginUser(req.body.email, req.body.password, res));
 
 export default router;
