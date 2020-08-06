@@ -1,2 +1,8 @@
-# mobitair_backend
-Provide information to air travelers about the safety of their trips
+`sequelize migration:create --name addcolumn-updatedAt-event-table`
+
+
+
+
+sequelize migration:create --name addcolumn-updatedAt-event-table
+
+npx sequelize-cli db:migrate
