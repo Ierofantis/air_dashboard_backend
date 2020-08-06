@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const bcrypt = require('bcrypt-nodejs');
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
   const user = sequelize.define('user', {
     username: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       unique: true,
       allowNull: false,
       validate: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     email: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       unique: true,
       allowNull: false,
       validate: {
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     password: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       unique: true,
       allowNull: false,
       validate: {

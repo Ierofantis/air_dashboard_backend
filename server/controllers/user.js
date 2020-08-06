@@ -2,6 +2,7 @@ const db = require("../models");
 const User = db.user;
 const bcrypt = require("bcrypt-nodejs");
 
+/* Register Users */
 exports.registerUser = async (email, username, password, res) => {
   try {
     let user = await User.count({ where: { email: email } });
@@ -26,16 +27,22 @@ exports.registerUser = async (email, username, password, res) => {
   }
 }
 
+/* Login Users */
 exports.loginUser = async (email, password, res) => {
-  let user = await User.findOne({ where: { email: email } });
-  let crypt = bcrypt.compareSync(password, user.password);
-  if (crypt && user.dataValues.username !== null) {
-    const token = User.generateAuthToken();
-    res.header("x-auth-token", token).send({
-      token: token
-    });
+  try {
+    let user = await User.findOne({ where: { email: email } });
+    let crypt = bcrypt.compareSync(password, user.password);
+    if (crypt && user.dataValues.username !== null) {
+      const token = User.generateAuthToken();
+      res.header("x-auth-token", token).send({
+        token: token
+      });
+    }
+    else {
+      res.status(401).send({ success: false, msg: 'Authentication failed' });
+    }
   }
-  else {
-    res.status(401).send({ success: false, msg: 'Authentication failed' });
+  catch (e) {
+    console.log(e)
   }
 }
