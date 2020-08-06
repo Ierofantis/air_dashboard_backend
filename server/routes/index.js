@@ -1,26 +1,15 @@
 import { Router } from 'express';
 
-import { defaultCrt, user, message } from '../controllers';
+import { user } from '../controllers';
+const db = require("../models");
+const User = db.user;
 
 const router = Router();
-
+const auth = { "myprivatekey": "myprivatekey" };
+const bcrypt = require("bcrypt-nodejs");
 /** Example route */
 router.get('/', (req, res) => res.send('Hello World!'));
-/** Example route */
-router.get('/sum', defaultCrt.sum);
-/** Example route */
-router.get('/multiply', defaultCrt.multiply);
-/** Example route */
-router.get('/users', user.getUsers);
-/** Example route */
-router.get('/users/:userId', user.getUserById);
-/** Example route */
-router.get('/messages', message.getMessages);
-/** Example route */
-router.get('/messages/:messageId', message.getMessageById);
-/** Example route */
-router.post('/messages', message.addMessage);
-/** Example route */
-router.delete('/messages/:messageId', message.deleteMessage);
+
+router.post('/signup', (req, res) => user.registerUser(req.body.email, req.body.username, req.body.password, res));
 
 export default router;

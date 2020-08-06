@@ -1,15 +1,17 @@
-import Sequelize from 'sequelize';
-import db from '../config/database';
+const dbConfig = require("../config/keys");
 
-const models = {
-  User: db.import('./user'),
-  Message: db.import('./message')
-};
-
-Object.keys(models).forEach(key => {
-  if ('associate' in models[key]) {
-    models[key].associate(models);
-  }
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(dbConfig.pgDatabase, dbConfig.pgUser, dbConfig.pgPassword, {
+  host: dbConfig.PGHOST,
+  dialect: "postgres",
+  port: dbConfig.pgPort,
 });
 
-export default models;
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.user = require("./user.js")(sequelize, Sequelize);
+
+module.exports = db;

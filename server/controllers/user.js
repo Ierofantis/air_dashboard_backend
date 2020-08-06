@@ -1,23 +1,31 @@
-import models from '../models';
+const db = require("../models");
+const User = db.user;
+const bcrypt = require("bcrypt-nodejs");
 
-/** Example controller */
-const getUsers = async (req, res) => {
+exports.registerUser = async (email, username, password, res) => {
   try {
-    const users = await models.User.findAll();
-    res.send(users);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
+    let user = await User.count({ where: { email: email } });
+    if (user === 0) {
+      User.create({
+        username: username,
+        password: bcrypt.hashSync(password),
+        email: email
+      })
+      const token = User.generateAuthToken();
 
-/** Example controller */
-const getUserById = async (req, res) => {
-  try {
-    const users = await models.User.findByPk(req.params.userId);
-    res.send(users);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
+      res.header("x-auth-token", token).send({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: token
+      });
 
-export { getUsers, getUserById };
+
+      //res.status(200).send({ success: true, msg: 'User registered.' });
+    } else {
+      res.status(400).send({ success: false, msg: 'User already registered.' });
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
