@@ -1,4 +1,5 @@
 import * as user from './user';
 import * as airline from './airline';
+import * as bankcrupt from './bankcrupt';
 
-export { airline, user };
+export { user, airline, bankcrupt };

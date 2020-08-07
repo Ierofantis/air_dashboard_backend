@@ -17,11 +17,14 @@ module.exports = {
             contact: {
                 type: Sequelize.STRING
             },
-            created_at: {
+            ranking: {
+                type: Sequelize.INTEGER
+            },
+            createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
-            updated_at: {
+            updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             }

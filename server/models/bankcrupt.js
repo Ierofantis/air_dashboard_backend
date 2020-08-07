@@ -1,10 +1,6 @@
-
 module.exports = (sequelize, Sequelize) => {
-  const accident = sequelize.define("accident", {
-    name: {
-      type: Sequelize.STRING
-    },
-    bancrupt: {
+  const bankcrupts = sequelize.define("bankcrupts", {
+    bankcrupts: {
       type: Sequelize.BOOLEAN
     },
     airlineId: {
@@ -17,5 +13,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return accident;
+  return bankcrupts;
 };
