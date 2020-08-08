@@ -8,9 +8,7 @@ exports.createBankcruptcy = async (res) => {
         let findAirlineByCount = await Bankcrupt.count({ where: { airlineId: 1 } });
 
         if (findAirlineByCount !== 0) {
-
             let findAirlineById = await Bankcrupt.findOne({ where: { airlineId: 1 } });
-
             let isBankcrupt = await findAirlineById.dataValues.bankcrupts === false ? true : false;
 
             await Bankcrupt.update({
@@ -19,9 +17,7 @@ exports.createBankcruptcy = async (res) => {
             }, { where: { id: 1 } })
 
             res.status(200).send({ success: true, msg: 'Bankcruptcy updated' });
-
         } else {
-
             await Bankcrupt.create({
                 bankcrupts: true,
                 airlineId: 1,
