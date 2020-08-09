@@ -7,9 +7,9 @@ exports.sortCompanyFromTopToWorst = async (res) => {
 
   try {
     let companies = await Airline.findAll({ order: [['ranking', 'ASC']] })
-    res.status(200).send({ success: true, data: companies });
+    res.json(companies)
   } catch (err) {
-    console.log(err)
+    res.json(err)
   }
 }
 
@@ -18,9 +18,9 @@ exports.sortCompanyFromWorstToTop = async (res) => {
 
   try {
     let companies = await Airline.findAll({ order: [['ranking', 'DESC']] })
-    res.status(200).send({ success: true, data: companies });
+    res.json(companies)
   } catch (err) {
-    console.log(err)
+    res.json(err)
   }
 }
 
@@ -43,7 +43,7 @@ exports.createAccidentForCertainAirline = async (res) => {
 
     res.status(200).send({ success: true, msg: 'Accident created' });
   } catch (err) {
-    console.log(err)
+    res.json(err)
   }
 }
 
