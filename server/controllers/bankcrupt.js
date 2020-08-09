@@ -1,26 +1,25 @@
 const db = require("../models");
-const Bankcrupt = db.bankcrupt;
+const Bankcrupt = db.bankcrupts;
 
 /* Create Bankcruptcy For Certain Airlines and "REMOVE" them */
-exports.createBankcruptcy = async (res) => {
+exports.createBankcruptcy = async (id, status, res) => {
     try {
 
-        let findAirlineByCount = await Bankcrupt.count({ where: { airlineId: 1 } });
+        let findAirlineByCount = await Bankcrupt.count({ where: { airlineId: id } });
 
         if (findAirlineByCount !== 0) {
-            let findAirlineById = await Bankcrupt.findOne({ where: { airlineId: 1 } });
-            let isBankcrupt = await findAirlineById.dataValues.bankcrupts === false ? true : false;
+            let isBankcrupt = await status;
 
             await Bankcrupt.update({
                 bankcrupts: isBankcrupt,
-                airlineId: 1,
-            }, { where: { id: 1 } })
+                airlineId: id,
+            }, { where: { id: id } })
 
             res.status(200).send({ success: true, msg: 'Bankcruptcy updated' });
         } else {
             await Bankcrupt.create({
                 bankcrupts: true,
-                airlineId: 1,
+                airlineId: id,
             })
 
             res.status(200).send({ success: true, msg: 'Bankcruptcy created' });
