@@ -9,7 +9,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             accidents: {
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             },
             airlineId: {
                 type: Sequelize.INTEGER,

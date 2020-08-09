@@ -9,7 +9,7 @@ exports.sortCompanyFromTopToWorst = async (res) => {
     let companies = await Airline.findAll({ order: [['ranking', 'ASC']] })
     res.json(companies)
   } catch (err) {
-    res.json(err)
+    console.log(err)
   }
 }
 
@@ -20,30 +20,31 @@ exports.sortCompanyFromWorstToTop = async (res) => {
     let companies = await Airline.findAll({ order: [['ranking', 'DESC']] })
     res.json(companies)
   } catch (err) {
-    res.json(err)
+    console.log(err)
   }
 }
 
 /* Create Accidents For Certain Airlines */
-exports.createAccidentForCertainAirline = async (res) => {
+exports.createAccidentForCertainAirline = async (accident, id, res) => {
 
   try {
-    await Accident.create({
-      accidents: 1,
-      airlineId: 1,
-    })
+    let reasons = { 'other': 1, 'people': 5, 'machine': 10, 'systems': 20 };
 
-    let findAirlineById = await Airline.findOne({ where: { id: 1 } });
+    await Accident.create({
+      accidents: accident,
+      airlineId: id
+    })
+    let findAirlineById = await Airline.findOne({ where: { id: id } });
     let airlineRanking = await findAirlineById.dataValues.ranking;
-    let updatedRanking = await airlineRanking + 1;
+    let updatedRanking = await airlineRanking + reasons[accident];
 
     await Airline.update({
       ranking: updatedRanking
-    }, { where: { id: 1 } })
+    }, { where: { id: id } })
 
     res.status(200).send({ success: true, msg: 'Accident created' });
   } catch (err) {
-    res.json(err)
+    console.log(err)
   }
 }
 

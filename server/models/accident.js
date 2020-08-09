@@ -1,11 +1,8 @@
 
 module.exports = (sequelize, Sequelize) => {
   const accident = sequelize.define("accident", {
-    name: {
-      type: Sequelize.STRING
-    },
     accidents: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     airlineId: {
       type: Sequelize.INTEGER,
