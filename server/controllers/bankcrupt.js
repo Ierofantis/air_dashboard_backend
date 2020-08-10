@@ -8,7 +8,7 @@ exports.createBankcruptcy = async (id, status, res) => {
             isBankcrupt: status,
         }, { where: { id: id } })
 
-        res.status(200).send({ success: true, msg: 'Bankcruptcy created' });
+        res.status(200).send({ success: true, msg: 'Bankruptcy action is completed' });
 
     } catch (err) {
         console.log(err)

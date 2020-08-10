@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import { user, airline, bankcrupt, accident, calculateRisk } from '../controllers';
-const auth = require("../middleware/auth");
 
 const router = Router();
 
