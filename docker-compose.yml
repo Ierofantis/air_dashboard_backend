@@ -25,7 +25,7 @@ services:
       - ./package-lock.json:/app/package-lock.json
       - notused:/app/node_modules
     environment:
-      - TZ=America/Mazatlan
+      - TZ=Europe/Athens
       - LC_CTYPE=en_US.UTF-8
       - LC_ALL=en_US.UTF-8
       - PGUSER=talentland
