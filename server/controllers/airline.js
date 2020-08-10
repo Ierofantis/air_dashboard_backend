@@ -6,7 +6,7 @@ const Airline = db.airline;
 exports.sortCompanyFromTopToWorst = async (res) => {
 
   try {
-    let companies = await Airline.findAll({ order: [['ranking', 'ASC']] })
+    let companies = await Airline.findAll({ where: { isBankcrupt: false }, order: [['ranking', 'ASC']] })
     res.json(companies)
   } catch (err) {
     console.log(err)
@@ -17,7 +17,29 @@ exports.sortCompanyFromTopToWorst = async (res) => {
 exports.sortCompanyFromWorstToTop = async (res) => {
 
   try {
-    let companies = await Airline.findAll({ order: [['ranking', 'DESC']] })
+    let companies = await Airline.findAll({ where: { isBankcrupt: false }, order: [['ranking', 'DESC']] })
+    res.json(companies)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+/* Get all airlines */
+exports.getAllAirlines = async (res) => {
+
+  try {
+    let companies = await Airline.findAll({ order: [['ranking', 'ASC']] })
+    res.json(companies)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+/* Get all removed airlines */
+exports.getAllRemovedAirlines = async (res) => {
+
+  try {
+    let companies = await Airline.findAll({ where: { isBankcrupt: true }, order: [['ranking', 'ASC']] })
     res.json(companies)
   } catch (err) {
     console.log(err)

@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
     ranking: {
       type: Sequelize.INTEGER
     },
+    isBankcrupt: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    },
   });
 
   return airline;

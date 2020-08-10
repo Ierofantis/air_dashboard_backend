@@ -12,6 +12,8 @@ router.post('/calculateRisk', (req, res) => calculateRisk.calculation(req.body.a
 
 router.get('/worstToTop', (req, res) => airline.sortCompanyFromWorstToTop(res));
 router.get('/topToWorst', (req, res) => airline.sortCompanyFromTopToWorst(res));
+router.get('/getAllAirlines', (req, res) => airline.getAllAirlines(res));
+router.get('/getAllRemovedAirlines', (req, res) => airline.getAllRemovedAirlines(res));
 
 router.get('/getTheAccidents', (req, res) => accident.getAllTheAccidents(res));
 router.get('/getAllTheBankcrupts', (req, res) => accident.getAllTheBankcrupts(res));
