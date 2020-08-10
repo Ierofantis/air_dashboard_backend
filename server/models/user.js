@@ -29,7 +29,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   user.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, "myprivatekey");
+    const token = jwt.sign({ foo: 'bar' }, "myprivatekey");
     return token;
   }
 
