@@ -23,6 +23,7 @@
 6) To create airline records in the database they are two options :
    a) Open postman or insomnia and make a post request to ` my_host:5000/api/createAirlines`
    b) You can type this curl command in commandline(change the host name): 
+   
     curl -X POST \
     http://my_host:5000/api/createAirlines \
     -H 'Content-Type: application/json' \
