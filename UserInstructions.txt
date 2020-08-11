@@ -1,0 +1,44 @@
+User Instructions
+
+First of all thank you for taking the time to review my application. I will give you some instructions to make your life easier when you navigate to the web client and to 
+understand my way of thinking throught the whole process. 
+
+1) Now you will see a dashboard that you can not navigate to any route because you are not logged in. You can click where It says: "Hi,User(top right)" and click register to add your 
+username, email and password. After doing that click the login link and add your email and password that you used in the registration phase. Wait for 1 second and now you will be available
+to navigate to the dashboard. If you want to logout just click the exit link.
+
+Authentication and authorization are implemented with the JWT way.
+
+2) The first link is just a welcoming text that informs the user that he must be logged in to make any operation.
+
+3) The second link is called Airlines and It contains all the airlines(that are not bankcrupted) in ascending order. The user can choose the order that he wants based on the ranking of 
+the airlines. 
+
+The changes of the airlines order in the ui are smooth without the need of the browser to reload the page.
+
+4) The third link is a form that the user can add accidents to any airline, that is not bankcrupted, and the type of the accident. Every type changes the ranking of the airline
+differently. For example let reasons = { 'other': 1, 'people': 5, 'machine': 10, 'systems': 20 }. So if an airline has ranking 3 and we add an accident with reason = machine then the
+airline ranking falls to 13.
+
+5) The fourth link contains a list with accidents per airline. From ui perpsective I liked the raw info on the Accidents reports column.
+
+6) The fifth link is a form that adds or remove bankcruptcy from an airline.
+
+7) The sixth link contains all the removed airlines. If someone removes the bankcruptcy from the fifth link then the airline goes to airlines list (second link).
+
+8) The calculate risk ιs also a form that takes the ranking of an airline and the weather conditions of a given date and calculates the risk index that you can see it on 
+the below success message . 
+   Some things to mention about that functionality:
+   1) This service is implemented in openfaas but NOT integrated with the application because of CORS problem. I have given you instructions to check It with postman or any 
+   other request client in the README file of the openfaas service.
+   2) The form is working with the Nodejs service that has the same logic with the openfaas service.
+   3) When you choose the date the service gets randomly weather conditions because I did not have the information to do the mapping. I have searched the most well known weather apis and 
+   I couldn't find a suitable solution(historic and future data about weather in specific location).
+   4) The airlines table has addresses because we need this information to calculate the weather. If we integrate this functionality with an api in the future(for a real world project)
+   location(from airlines) with date(from client) parameters will be necessary for that functionality.
+
+Thanks,
+Theodore Pantazopoulos
+Software Engineer
+   
+   
