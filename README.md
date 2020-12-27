@@ -1,4 +1,4 @@
-# MobitAir backend
+# Air backend
 
 # Installation instructions
 
