@@ -35,10 +35,5 @@ the below success message .
    3) When you choose the date the service gets randomly weather conditions because I did not have the information to do the mapping. I have searched the most well known weather apis and 
    I couldn't find a suitable solution(historic and future data about weather in specific location).
    4) The airlines table has addresses because we need this information to calculate the weather. If we integrate this functionality with an api in the future(for a real world project)
-   location(from airlines) with date(from client) parameters will be necessary for that functionality.
-
-Thanks,
-Theodore Pantazopoulos
-Software Engineer
-   
+   location(from airlines) with date(from client) parameters will be necessary for that functionality.  
    
